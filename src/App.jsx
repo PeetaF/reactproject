@@ -1,23 +1,26 @@
-import logo from "./images/logo.svg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Home from "./components/pages/Home";
+import Users from "./components/pages/Users";
+import UserBlog from "./components/pages/UserBlog";
+import UserPost from "./components/pages/UserPost";
+import CreatePost from "./components/pages/CreatePost";
 
 import "./styles/normalize.css";
-import "./styles/main.css";
 import "./styles/fontawesome.min.css";
-
+import "./styles/main.css";
 
 function App() {
   return (
-    <div className="home center">
-      <div className="home__logo">
-        <img src={logo} class="responsive" alt="" />
-      </div>
-      <select className="home__select-users">
-        <option>User 1</option>
-        <option>User 2</option>
-        <option>User 3</option>
-      </select>
-      <button className="button-primary">Entrar</button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/users/:userId" element={<UserBlog />} />
+        <Route path="/users/:userId/posts/:postId" element={<UserPost />} />
+        <Route path="/users/:userId/posts/new" element={<CreatePost />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
